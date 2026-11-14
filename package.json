@@ -1,4 +1,9 @@
 {
+  "name": "appointacare-root",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "cd frontend && npm install && npm run build"
+  },
   "dependencies": {
     "jspdf": "^3.0.1",
     "jspdf-autotable": "^5.0.2",
