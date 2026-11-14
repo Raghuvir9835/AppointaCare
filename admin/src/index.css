@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+    font-family: 'Outfit', system-ui, sans-serif;
+    background: linear-gradient(135deg, #f5f8ff 0%, #f9fbff 40%, #eef4fe 100%);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    color: #1e293b;
+}
+
+* {
+    font-family: 'Outfit', sans-serif;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(79, 140, 255, 0.25);
+    border-radius: 9999px;
+}
+
+/* Modern Background Mesh & Orbs */
+.bg-dot-pattern {
+  background-image: radial-gradient(rgba(79, 140, 255, 0.16) 1.2px, transparent 1.2px);
+  background-size: 28px 28px;
+}
+
+.ambient-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  pointer-events: none;
+  animation: floatOrb 20s ease-in-out infinite alternate;
+}
+
+.orb-1 {
+  width: 520px;
+  height: 520px;
+  top: -80px;
+  left: -80px;
+  background: radial-gradient(circle, rgba(79, 140, 255, 0.30) 0%, rgba(99, 102, 241, 0.15) 60%, transparent 100%);
+  animation-duration: 22s;
+}
+
+.orb-2 {
+  width: 480px;
+  height: 480px;
+  top: 35%;
+  right: -90px;
+  background: radial-gradient(circle, rgba(45, 212, 191, 0.25) 0%, rgba(79, 140, 255, 0.12) 65%, transparent 100%);
+  animation-duration: 26s;
+  animation-delay: -5s;
+}
+
+.orb-3 {
+  width: 560px;
+  height: 560px;
+  bottom: 8%;
+  left: 5%;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.20) 0%, rgba(79, 140, 255, 0.15) 60%, transparent 100%);
+  animation-duration: 28s;
+  animation-delay: -10s;
+}
+
+@keyframes floatOrb {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: translate(35px, -30px) scale(1.06);
+  }
+  100% {
+    transform: translate(-25px, 35px) scale(0.96);
+  }
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 10px 35px -5px rgba(79, 140, 255, 0.10);
+}
