@@ -24,31 +24,7 @@ connectCloudinary()
 
 // middlewares
 app.use(express.json())
-const allowedOrigins = [
-  'https://appointa-care-exze.vercel.app',   // Production frontend
-  'https://appointa-care-admin.vercel.app',  // Production admin
-  'http://localhost:5173',                   // Dev frontend
-  'http://localhost:5174',                   // Dev admin
-  'http://localhost:5175',                   // Dev admin (alternate)
-  'http://localhost:5176',                   // Dev admin (alternate)
-  'http://127.0.0.1:5173',                   // Dev frontend (127.0.0.1)
-  'http://127.0.0.1:5174',                   // Dev admin (127.0.0.1)
-  'http://127.0.0.1:5175',                   // Dev admin (127.0.0.1 alternate)
-  'http://127.0.0.1:5176'                    // Dev admin (127.0.0.1 alternate)
-];
-
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
-    credentials: true
-  })
-);
+app.use(cors());
 
 
 // api endpoints
@@ -69,7 +45,7 @@ function startServer() {
   const server = app.listen(port, () => console.log(`Server started on PORT:${port}`));
 
   server.on('error', (err) => {
-    if (err.code === 'EADDRINUSE') {
+    if (err.code === 'EADDRINUSE' && process.platform === 'win32') {
       console.warn(`⚠️  Port ${port} is already in use. Attempting to free it...`);
       // Kill the process holding the port (Windows PowerShell)
       exec(
@@ -85,7 +61,8 @@ function startServer() {
         }
       );
     } else {
-      throw err;
+      console.error(err);
+      process.exit(1);
     }
   });
 }
